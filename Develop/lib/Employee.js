@@ -17,10 +17,9 @@ class Employee {
         return this.email
     };
     getRole() {
-        return Employee
+        return "Employee"
     };
+};
+module.exports = Employee;
 
 
-
-// var dog= new Animal("wolfy","brown","dog","purina")
-// var cat= new Animal("meow","black","cat","iAMs")
