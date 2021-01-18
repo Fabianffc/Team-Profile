@@ -95,7 +95,7 @@ methods:
   * getEmail()
   * getRole() // Returns 'Employee'
 
-The other three classes will extend `Employee`. 
+The other three classes will extends `Employee`. 
 
 In addition to `Employee`'s properties and methods, `Manager` will also have:
 
