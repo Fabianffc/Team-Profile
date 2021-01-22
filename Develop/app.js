@@ -13,59 +13,45 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const differentEmployees = ["Manager", "Engineer", "Intern"]
+const employees = []
+const differentEmployees = ["Manager", "Engineer", "Intern","I'm done adding employees"]
 
 /*
  Write code to use inquirer to gather information about the development team members,
  and to create objects for each team member (using the correct classes as blueprints!)
 */
-inquirer.prompt([
-    {
-        name: "name",
-        type: "input",
-        message: "What is your name",
-    },
-    {
-        name: "id",
-        type: "input",
-        message: "What is your id number?",
-    },
-    {
-        name: "email",
-        type: "input",
-        message: "what is your email?",
-    },
-    {
-        name: "employee_choices",
-        type: "checkbox",
-        message: "What type of employee do you want to add?",
-        choices: differentEmployees,
-    },
-])
-/*
- After the user has input all employees desired, call the `render` function (required
- above) and pass in an array containing all employee objects; the `render` function will
- generate and return a block of HTML including templated divs for each employee!
-*/
+function generalQuestions() {
+    inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "What is your name",
+        },
+        {
+            name: "id",
+            type: "input",
+            message: "What is your id number?",
+        },
+        {
+            name: "email",
+            type: "input",
+            message: "what is your email?",
+            
+        },
+        {
+            name: "employee_choices",
+            type: "checkbox",
+            message: "What type of employee do you want to add?",
+            choices: differentEmployees,
+        },
+    ])
+};
+//if user chose differentEmployee[0](Manager)ask for officeNumber and comeback to last question
+//if user chose differentEmployee[1](Engineer)ask for github acc and comeback to last question
+//if user chose differentEmployee[2](Intern)ask for school and comeback to last question
+//if user chose differentEmployee[3](Im done adding)close application and create team.html file
+generalQuestions();
 
-/*
- After you have your html, you're now ready to create an HTML file using the HTML
- returned from the `render` function. Now write it to a file named `team.html` in the
-`output` folder. You can use the variable `outputPath` above target this location.
- Hint: you may need to check if the `output` folder exists and create it if it
- does not.
-*/
 
-/*
- HINT: each employee type (manager, engineer, or intern) has slightly different
- information; write your code to ask different questions via inquirer depending on
- employee type.
-*/
+fs.writeFile(outputPath, render(employees), () => console.log('Your team.html file has been added to "output".'));
 
-/*
- HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
- and Intern classes should all extend from a class named Employee; see the directions
- for further information. Be sure to test out each class and verify it generates an
- object with the correct structure and methods. This structure will be crucial in order
- for the provided `render` function to work! ```
-*/
