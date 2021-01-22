@@ -5,11 +5,14 @@ const Employee = require("./Employee.js");
 //Defining the "Manager" class using the "Employee" class to not repeat code with "extends"
 class Manager extends Employee {
     constructor(name, id, email, officeNumber) {
-        this.officeNumber = officeNumber;
         //super() is called to avoid duplicating the constructor parts' that are common between Employee and Manager
         super(name, id, email);
+        this.officeNumber = officeNumber;
     };
     //methods
+    getOfficeNumber(){
+        return this.officeNumber
+    }
     getRole() {
         return "Manager"
     };
